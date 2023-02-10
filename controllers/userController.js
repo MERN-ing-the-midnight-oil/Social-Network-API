@@ -2,8 +2,9 @@
 const { ObjectId } = require("mongoose").Types;
 const { User } = require("../models");
 
+//making functions , for example createUser, to be exported to userRoutes, to be assigned a URL path the front end can use
 module.exports = {
-	//create a new user, good example on the mini-project student controller
+	//creates a new user
 	createUser(req, res) {
 		User.create(req.body)
 			.then((user) => res.json(user))

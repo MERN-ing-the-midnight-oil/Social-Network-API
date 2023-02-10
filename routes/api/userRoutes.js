@@ -1,12 +1,13 @@
 //model this after miniproject studentRoutesines 12 15 21  not 18, addAssignment
 const router = require("express").Router();
 const {
-	createUser,
+	createUser, //this function was exported from userController.js
 	//  deleteUser,
 	// getAllUsers,
 	// getOneUser,
 } = require("../..controllers/userController");
 
-//  insomnia's URL: /api/users/
+//insomnia's URL: /api/users/add
+router.route("/users/add").post(createUser);
 
 module.exports = router;
