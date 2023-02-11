@@ -5,9 +5,8 @@ const {
 	//  deleteUser,
 	// getAllUsers,
 	// getOneUser,
-} = require("../..controllers/userController");
-
-//insomnia's URL: /api/users/add
-router.route("/users/add").post(createUser);
+} = require("../../controllers/userController");
+//insomnia's URL: /api/users
+router.route("/users").post(createUser);
 
 module.exports = router;
