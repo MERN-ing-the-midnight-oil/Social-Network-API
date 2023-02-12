@@ -7,6 +7,11 @@ const {
 	// getAllUsers,
 	// getOneUser,
 } = require("../../controllers/userController");
-//insomnia's URL: /api/users
-router.route("/").post(createUser).delete(deleteUser);
+//insomnia's URL:
+//    /api/users/
+router.route("/").post(createUser);
+
+//":userID" or just "userID"?
+router.route("/:userId").delete(deleteUser);
+
 module.exports = router;

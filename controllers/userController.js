@@ -16,16 +16,18 @@ module.exports = {
 	//delete a user
 	deleteUser(req, res) {
 		console.log("! ! ! you are deleting a user In userController.js... !");
-		User.findOneAndDelete({ _id: req.params.iD })
-			.then((user) =>
-				!user
-					? res.status(404).json({ message: "no user found by that ID" })
-					: Thought.deleteMany({ _id: { $in: user.thoughts } })
-			)
-			.then(() => res.json({ message: "User has been deleted!" }))
-			.catch((err) => res.status(500).json(err));
+		//_id is a mongoDB key, id is parsed from the url used
+		User.findOneAndDelete({ _id: req.params.userId }),
+			(err, result) => {
+				if (result) {
+					res.status(200).json(result);
+					console.log(`You have deleted a user`);
+				} else {
+					console.log("Uh Oh, something went wrong");
+					res.status(500).json({ message: "something went wrong" });
+				}
+			};
 	},
-
 	//getAllUsers(req, res) {}
 	//getOneUser(req, res) {}
 };
