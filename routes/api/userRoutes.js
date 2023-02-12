@@ -13,6 +13,6 @@ router.route("/").post(createUser);
 
 //":userID" just loads forever
 //"userID"? gives 200 wrong route
-router.route("/Id").delete(deleteUser);
+router.route("/:userId").delete(deleteUser);
 
 module.exports = router;
