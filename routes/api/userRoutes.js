@@ -11,7 +11,8 @@ const {
 //    /api/users/
 router.route("/").post(createUser);
 
-//":userID" or just "userID"?
-router.route("/:userId").delete(deleteUser);
+//":userID" just loads forever
+//"userID"? gives 200 wrong route
+router.route("/Id").delete(deleteUser);
 
 module.exports = router;
