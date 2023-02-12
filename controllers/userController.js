@@ -17,7 +17,7 @@ module.exports = {
 	deleteUser(req, res) {
 		console.log("! ! ! you are deleting a user In userController.js... !");
 		//_id is a mongoDB key, id is parsed from the url used
-		User.findOneAndDelete({ _id: req.params.Id }),
+		User.findOneAndDelete({ _id: req.params.userId }),
 			(err, result) => {
 				if (result) {
 					res.status(200).json(result);
