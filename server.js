@@ -11,6 +11,8 @@ app.use(routes);
 
 db.once("open", () => {
 	app.listen(PORT, () => {
-		console.log(`! ! ! !  you're running server.js on port ${PORT}!`);
+		console.log(
+			`! ! ! !  you're running your Social Network server.js on port ${PORT}!`
+		);
 	});
 });
