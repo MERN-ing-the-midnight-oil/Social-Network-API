@@ -1,4 +1,3 @@
-//const ObjectID , what does this do?  why do we need to tell mongoose about it?
 const { ObjectId } = require("mongoose").Types;
 const { User } = require("../models");
 
