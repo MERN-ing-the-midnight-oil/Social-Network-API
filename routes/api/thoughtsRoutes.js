@@ -2,10 +2,15 @@
 const router = require("express").Router();
 const {
 	createThought,
-	// getAllThoughts,
+	// getThoughts,
+	// getOneThought
 	//  updateThought,
 	//  deleteThought,
 } = require("../../controllers/thoughtController");
 
-//the beginning of all these paths is: /api/thoughts
+//the base path of all these paths is: /api/thoughts
 router.route("/").post(createThought);
+//router.route("/").get(getThoughts);
+//router.route("/:thoughtId").delete(deleteThought);
+//router.route("/:thoughtId").get(getOneThought);
+//router.route("/:thoughtId").put(updateThought);
