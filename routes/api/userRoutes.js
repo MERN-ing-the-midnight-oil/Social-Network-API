@@ -4,15 +4,15 @@ const {
 	//these functions were exported from userController.js
 	createUser,
 	deleteUser,
-	// getAllUsers,
-	// getOneUser,
+	getSingleUser,
+	updateUser,
+	getUsers,
 } = require("../../controllers/userController");
-//insomnia's URL:
-//    /api/users/
+
+//the base path for these paths is:  /api/users
 router.route("/").post(createUser);
-
-//":userID" just loads forever
-//"userID"? gives 200 wrong route
+router.route("/").get(getUsers);
 router.route("/:userId").delete(deleteUser);
-
+router.route("/:userId").get(getSingleUser);
+router.route("/:userId").put(updateUser);
 module.exports = router;
