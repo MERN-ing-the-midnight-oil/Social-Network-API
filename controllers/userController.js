@@ -62,7 +62,6 @@ module.exports = {
 			{ _id: req.params.userId },
 			//use the update operator $set to update fields in the req. body
 			{ $set: req.body },
-			//runValidators does something cool, probably. Do I need it?? Who knows.
 			{ runValidators: true, new: true }
 		).then((data) => {
 			console.log(
