@@ -1,11 +1,21 @@
 const { ObjectId } = require("mongoose").Types;
-const { Thought } = require("../models");
+const { Thought, User } = require("../models");
 
 module.exports = {
 	createThought(req, res) {
 		console.log("! ! you are creating a new thought");
 		Thought.create(req.body)
-			.then((Thought) => res.json(Thought))
+			.then((newThought) => {
+				//don't forget to push the created thought's _id to the associated user's thoughts array field)
+				//find the user belonging to this thought, get that userId, update the thoughts field with the _id of the newThought
+				User.findOneAndUpdate(
+					{ _id: req.body.userId },
+					{ $push: { thoughts: newThought._id } },
+					{ runValidators: true, new: true }
+				).then((updatedUser) => {
+					res.json(updatedUser);
+				});
+			})
 			.catch((err) => res.status(500).json(err));
 	},
 	getOneThought(req, res) {
