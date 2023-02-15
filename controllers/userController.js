@@ -2,7 +2,36 @@ const { ObjectId } = require("mongoose").Types;
 const { User } = require("../models");
 
 //making functions , for example createUser, to be exported to userRoutes, to be assigned a URL path the front end can use
+
 module.exports = {
+	addFriend(req, res) {
+		console.log("! ! ! you are adding a friend! ! !");
+		User.findOneAndUpdate(
+			{ _id: req.params.userId }, //who we are finding
+			{ $push: { friends: req.params.friendId } }, //what we are updating
+			{ runValidators: true, new: true } //is it new info? should validators run?
+		)
+			.then((data) => {
+				//"data" is my variable name for whatever mongoose returns, probably the USer in this case
+				res.status(200).json(data); //send the front end the success and the json of the data
+			})
+			.catch((err) => res.status(500).json(err));
+	},
+	deleteFriend(req, res) {
+		console.log("! ! ! you are deleteing a friend! ! !");
+		User.findOneAndUpdate(
+			{ _id: req.params.userId }, //who we are finding
+			{ $pull: { friends: req.params.friendId } }, //what we are updating
+			{ runValidators: true, new: true } //is it new info? should validators run?
+		)
+			.then((data) => {
+				//"data" is my variable name for whatever mongoose returns, probably the USer in this case
+				res.status(200).json(data); //send the front end the success and the json of the data
+			})
+			.catch((err) => res.status(500).json(err));
+	},
+
+	//find all users
 	//Create user
 	createUser(req, res) {
 		// .create is probably a mongoose function that makes an instance of "User"out of the info in the req.body

@@ -7,6 +7,8 @@ const {
 	getSingleUser,
 	updateUser,
 	getUsers,
+	addFriend,
+	deleteFriend,
 } = require("../../controllers/userController");
 
 //the base path for these paths is:  /api/users
@@ -15,4 +17,5 @@ router.route("/").get(getUsers);
 router.route("/:userId").delete(deleteUser);
 router.route("/:userId").get(getSingleUser);
 router.route("/:userId").put(updateUser);
+router.route("/:userId/friends/:friendId").post(addFriend).delete(deleteFriend);
 module.exports = router;
