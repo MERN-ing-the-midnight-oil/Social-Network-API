@@ -10,7 +10,7 @@ const {
 
 const {
 	createReaction,
-	//deleteReaction,
+	deleteReaction,
 } = require("../../controllers/reactionController");
 
 //the base URL path of all these URL paths is: /api/thoughts
@@ -22,5 +22,5 @@ router.route("/:thoughtId").delete(deleteThought);
 
 //adding createREaction and deleteREaction
 router.route("/:thoughtId/reactions").post(createReaction);
-//router.route('/:thoughtId/reactions/:reactionId').delete(deleteReaction)
+router.route("/:thoughtId/reactions/:reactionId").delete(deleteReaction);
 module.exports = router;

@@ -26,4 +26,28 @@ module.exports = {
 			}
 		});
 	},
+
+	deleteReaction(req, res) {
+		console.log("! ! you are deleting a Reaction!  ! !");
+		Thought.findOneAndUpdate(
+			//Finding the correct thought using the _id parameter put in the URL
+			{ _id: req.params.thoughtId },
+			//deleting the reactionBody from the reactions array in the found Thought.
+			{ $pull: { reactions: req.params.reactionId } },
+			{ new: true }
+		).then((data) => {
+			console.log(
+				"* * * here is the deleted reaction data for your update: " + data
+			);
+			if (data) {
+				console.log("! ! ! you deleted a reaction! ! ");
+				return res.status(200).json(data);
+			} else {
+				console.log("Uh Oh, something went wrong with your delete");
+				res
+					.status(500)
+					.json({ message: "something went wrong with your delete" });
+			}
+		});
+	},
 };
