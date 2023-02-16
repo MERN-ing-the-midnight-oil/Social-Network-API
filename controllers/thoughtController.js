@@ -48,18 +48,19 @@ module.exports = {
 			//use the update operator $set to update fields in the req. body
 			{ $set: req.body },
 			{ runValidators: true, new: true }
-		).then((data) => {
-			console.log(
-				"* * * here is the single thought data for your update: " + data
-			);
-			if (data) {
+		)
+			.then((data) => {
+				console.log(
+					"* * * here is the single thought data for your update: " + data
+				);
+				// if (data) {
 				console.log("! ! ! you updated a thought! ! ");
 				return res.status(200).json(data);
-			} else {
-				console.log("Uh Oh, something went wrong");
-				res.status(500).json({ message: "something went wrong" });
-			}
-		});
+			})
+			.catch((error) => {
+				console.log("Uh Oh, something went wrong", error);
+				res.status(500).json({ message: "something went wrong", error: error });
+			});
 	},
 	deleteThought(req, res) {
 		console.log(
